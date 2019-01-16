@@ -45,6 +45,7 @@ $tab-height: 40px;
     width: 100%;
     height: $tab-height;
     line-height: $tab-height;
+    // 调用1px混合 配合border-1px class使用
     @include border-1px(rgba(7,17,27,0.1));
     .tab-item {
       flex: 1;

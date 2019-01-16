@@ -20,6 +20,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  // 活动的连接class名称修改为active
   linkActiveClass: 'active',
   routes
 })

@@ -1,3 +1,5 @@
+// 提取公共方法
+// 移动端1px解决方案
 @mixin border-1px($color) {
   position: relative;
   &::after {
