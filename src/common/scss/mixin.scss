@@ -12,3 +12,11 @@
     content: ' '
   }
 }
+
+// 处理2x 和 3x 图片
+@mixin bg-image($url) {
+  background-image: url($url + '@2x.png');
+  @media screen and (-webkit-min-device-pixel-ratio: 3) {
+    background-image: url($url + '@3x.png');
+  }
+}

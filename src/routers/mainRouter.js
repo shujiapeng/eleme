@@ -2,7 +2,7 @@ import VueRouter from 'vue-router'
 
 import Goods from '../components/content/Goods.vue'
 import Ratings from '../components/content/Ratings.vue'
-import Sellers from '../components/content/Sellers.vue'
+import Seller from '../components/content/Seller.vue'
 
 const routes = [
   {
@@ -14,8 +14,8 @@ const routes = [
     component: Ratings
   },
   {
-    path: '/sellers',
-    component: Sellers
+    path: '/seller',
+    component: Seller
   }
 ]
 

@@ -1,6 +1,10 @@
 var path = require('path')
 var webpack = require('webpack')
 
+const express = require('express')
+const app = express()
+const appData = require('./data.json')
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -78,7 +82,27 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+    before(app) {
+      app.get('/api/goods', (req, res)=>{
+        res.json({
+          errorno: 0,
+          data: appData.goods
+        })
+      }),
+      app.get('/api/ratings', (req, res)=>{
+        res.json({
+          errorno: 0,
+          data: appData.ratings
+        })
+      }),
+      app.get('/api/seller', (req, res)=>{
+        res.json({
+          errorno: 0,
+          data: appData.seller
+        })
+      })
+    }
   },
   performance: {
     hints: false

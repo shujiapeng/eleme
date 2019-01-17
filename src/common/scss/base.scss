@@ -1,4 +1,11 @@
 
+
+body, html {
+  line-height: 1;
+  font-weight: 200;
+  font-family: 'Courier New', Courier, monospace
+}
+
 //屏幕查询，将比例为1.5的屏幕缩小.7 解决移动端1px的问题
 @media screen and (-webkit-min-device-pixel-ratio: 1.5) {
   .border-1px {
@@ -13,6 +20,15 @@
   .border-1px {
     &::after {
       transform: scaleY(0.5);
+    }
+  }
+}
+
+//屏幕查询，将比例为3的屏幕缩小.5 解决移动端1px的问题
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+  .border-1px {
+    &::after {
+      transform: scaleY(0.3);
     }
   }
 }
