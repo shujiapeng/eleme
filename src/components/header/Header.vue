@@ -15,13 +15,14 @@
           <div class="text">{{seller.supports[0].description}}</div>
         </div>
       </div>
-      <div v-if="seller.supports" class="support-count">
+      <div v-if="seller.supports" class="support-count" @click="detailShow=true">
         <span class="count">{{seller.supports.length}}个</span>
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
-    <div class="bulletin-wrapper">
-      <span class="icon"></span><span class="text">{{seller.bulletin}}</span>
+    <div class="bulletin-wrapper" @click="detailShow=true">
+      <span class="icon"></span>
+      <span class="text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
     </div>
     <div class="background-wrapper">
@@ -29,10 +30,18 @@
         <img :src="seller.avatar">
       </div>
     </div>
+    <div class="detail" v-show="detailShow">
+      <div class="title">
+        <div class="name">{{seller.name}}</div>
+        <v-star :size="48" :score="4.5"></v-star>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Star from "../star/Star.vue";
+
 export default {
   props: {
     seller: {
@@ -41,16 +50,18 @@ export default {
   },
   data() {
     return {
-      classMap: ["decrease", "discount", "special", "invoice", "guarantee"]
+      classMap: ["decrease", "discount", "special", "invoice", "guarantee"],
+      detailShow: true
     };
+  },
+  components: {
+    "v-star": Star
   }
 };
 </script>
 
 <style lang="scss">
 @import "../../common/scss/mixin.scss";
-
-$header-height: 134px;
 
 .header {
   position: relative;
@@ -193,6 +204,30 @@ $header-height: 134px;
       img {
         width: 100%;
         height: 100%;
+      }
+    }
+  }
+  .detail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: rgba(7, 17, 27, 0.8);
+    // filter: blur(10px);
+    .title {
+      padding: 64px 0 28px 0;
+      text-align: center;
+      .name {
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 16px;
+        margin-bottom: 16px;
+      }
+      .star {
+        margin-bottom: 26px;
       }
     }
   }

@@ -1,8 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
+var VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-const express = require('express')
-const app = express()
 const appData = require('./data.json')
 
 module.exports = {
@@ -68,7 +67,7 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'url-loader',
         options: {
-          limit: 8192,
+          limit: 8*1024,
           name: '[name].[ext]?[hash]'
         }
       },
@@ -81,6 +80,9 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new VueLoaderPlugin()
+  ],
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
@@ -117,6 +119,8 @@ module.exports = {
   },
   devtool: '#eval-source-map'
 }
+
+module.exports.mode = process.env.NODE_ENV
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
